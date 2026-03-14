@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Categorías - Antvengers Admin</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="stilos/style.css">
+    <link rel="stylesheet" href="stilos/admin_categorias.css">
+</head>
+<body class="dark" style="display: block; padding: 0;">
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="bi bi-shield-heart-fill"></i>
+                    </div>
+                    <h2 class="logo-text">Antvengers</h2>
+                </div>
+                <p style="font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--slate-500); margin-top: 0.5rem; padding-left: 3.25rem;">Admin Central</p>
+            </div>
+
+            <nav class="flex-1">
+                <div class="nav-section">
+                    <p class="nav-title">Principal</p>
+                    <a href="#" class="nav-link">
+                        <i class="bi bi-speedometer2"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="bi bi-receipt"></i>
+                        <span>Gastos</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="bi bi-graph-up-arrow"></i>
+                        <span>Reportes</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <p class="nav-title">Administración</p>
+                    <a href="admin_usuarios.html" class="nav-link">
+                        <i class="bi bi-people"></i>
+                        <span>Usuarios</span>
+                    </a>
+                    <a href="admin_categorias.html" class="nav-link active">
+                        <i class="bi bi-tags"></i>
+                        <span>Categorías</span>
+                    </a>
+                    <a href="admin_metodos_pago.html" class="nav-link">
+                        <i class="bi bi-credit-card"></i>
+                        <span>Métodos de Pago</span>
+                    </a>
+                    <a href="admin_comercios.html" class="nav-link">
+                        <i class="bi bi-shop"></i>
+                        <span>Comercios</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <p class="nav-title">Sistema</p>
+                    <a href="#" class="nav-link">
+                        <i class="bi bi-gear"></i>
+                        <span>Configuración</span>
+                    </a>
+                </div>
+            </nav>
+
+            <!-- User Profile at bottom -->
+            <div style="padding: 1.5rem; border-top: 1px solid var(--border-current);">
+                <div class="user-badge" style="background: none; padding: 0;">
+                    <img src="https://ui-avatars.com/api/?name=Admin+Antvenger&background=2aa3cf&color=fff" class="user-avatar" alt="Admin">
+                    <div style="flex: 1;">
+                        <p style="font-size: 0.8rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 130px;">Admin Antvengers</p>
+                        <p style="font-size: 0.65rem; color: var(--slate-500);">admin@antvengers.co</p>
+                    </div>
+                    <button class="action-btn" id="logout-btn" title="Cerrar sesión">
+                        <i class="bi bi-box-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <div>
+                    <!-- Breadcrumbs or simple icon -->
+                    <i class="bi bi-tags" style="color: var(--slate-400); font-size: 1.25rem;"></i>
+                </div>
+                
+                <div style="display: flex; gap: 1rem; align-items: center; flex: 1; max-width: 500px; margin-left: 1rem;">
+                    <div style="position: relative; width: 100%;">
+                        <i class="bi bi-search" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--slate-400);"></i>
+                        <input type="text" class="form-input" id="search-categorias" placeholder="Buscar categorías..." style="width: 100%; padding: 0.5rem 1rem 0.5rem 2.5rem; font-size: 0.8rem; border-radius: var(--radius-lg); background-color: var(--bg-current);">
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 0.5rem; align-items: center; margin-left: auto;">
+                    <button class="menu-btn" id="theme-toggle" title="Cambiar tema">
+                        <i class="bi bi-moon-stars-fill" id="theme-icon"></i>
+                    </button>
+                    <button class="menu-btn" title="Notificaciones">
+                        <i class="bi bi-bell"></i>
+                    </button>
+                </div>
+            </header>
+
+            <div class="content-body" style="padding-top: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <h2 style="font-size: 1.75rem; font-weight: 800; letter-spacing: -0.025em;">Gestión de Categorías</h2>
+                        <p style="color: var(--slate-500); font-size: 0.875rem; margin-top: 0.25rem;">Administra las clasificaciones de productos del sistema Antvengers.</p>
+                    </div>
+                    <button class="submit-btn" style="padding: 0.6rem 1.2rem; font-size: 0.875rem; width: auto;" id="add-categoria-btn">
+                        <i class="bi bi-plus" style="font-size: 1.1rem; margin-right: 0.25rem;"></i>
+                        <span>Nueva Categoría</span>
+                    </button>
+                </div>
+
+                <!-- Table -->
+                <div class="table-container" style="border: none; border-radius: 0.75rem; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); margin-bottom: 2rem;">
+                    <table class="custom-table" style="width: 100%;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid var(--border-current);">
+                                <th style="background-color: rgba(var(--slate-800), 0.5);">Icono</th>
+                                <th style="background-color: rgba(var(--slate-800), 0.5);">Nombre</th>
+                                <th style="background-color: rgba(var(--slate-800), 0.5);">Descripción</th>
+                                <th style="text-align: right; background-color: rgba(var(--slate-800), 0.5);">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="categorias-table-body">
+                            <!-- JS will populate this -->
+                        </tbody>
+                    </table>
+                    
+                    <!-- Pagination info -->
+                    <div style="padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-current); background-color: rgba(var(--slate-800), 0.5);">
+                        <p style="font-size: 0.75rem; font-weight: 500; color: var(--slate-500);" id="table-info">Mostrando 0 resultados</p>
+                        <div style="display: flex; gap: 0.25rem;">
+                            <button class="menu-btn" style="width: 2rem; height: 2rem; background: transparent; border: 1px solid var(--border-current);" disabled><i class="bi bi-chevron-left" style="font-size: 0.8rem;"></i></button>
+                            <button class="menu-btn active" style="width: 1.5rem; height: 1.5rem; background: var(--primary); color: white; font-weight: 700; font-size: 0.75rem;">1</button>
+                            <button class="menu-btn" style="width: 1.5rem; height: 1.5rem; background: transparent; border: 1px solid var(--border-current); font-size: 0.75rem;">2</button>
+                            <button class="menu-btn" style="width: 1.5rem; height: 1.5rem; background: transparent; border: 1px solid var(--border-current); font-size: 0.75rem;">3</button>
+                            <button class="menu-btn" style="width: 2rem; height: 2rem; background: transparent; border: 1px solid var(--border-current);"><i class="bi bi-chevron-right" style="font-size: 0.8rem;"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Summary Stats -->
+                <div class="grid-stats-bottom">
+                    <div class="bottom-stat-card">
+                        <div class="stat-label-mini">Total Categorías</div>
+                        <div style="display: flex; align-items: flex-end; gap: 0.5rem;">
+                            <div class="stat-value-large" id="total-categorias-stat">0</div>
+                            <div style="color: #10b981; font-size: 0.75rem; font-weight: 500; display: flex; align-items: center; padding-bottom: 0.35rem;">
+                                <i class="bi bi-graph-up-arrow" style="margin-right: 0.25rem;"></i>
+                                +2 este mes
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bottom-stat-card">
+                        <div class="stat-label-mini">Categoría Top</div>
+                        <div style="display: flex; align-items: flex-end; gap: 0.5rem;">
+                            <div class="stat-value-large" id="top-categoria-stat">Ninguna</div>
+                        </div>
+                        <div style="color: var(--slate-500); font-size: 0.7rem; margin-top: 0.25rem;">Mas productos asociados</div>
+                    </div>
+                    
+                    <div class="bottom-stat-card">
+                        <div class="stat-label-mini">Actividad Reciente</div>
+                        <div style="font-size: 0.875rem; font-weight: 600; margin-top: 0.5rem;" id="recent-categoria-stat">Ninguna</div>
+                        <div style="color: var(--slate-500); font-size: 0.7rem;">Última categoría editada</div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for CRUD -->
+    <div id="categoria-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 100; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
+        <div class="stat-card" style="width: 100%; max-width: 450px; padding: 2.5rem; position: relative;">
+            <button id="close-modal" style="position: absolute; right: 1.5rem; top: 1.5rem; border: none; background: none; cursor: pointer; color: var(--slate-400);">
+                <i class="bi bi-x-lg"></i>
+            </button>
+            <h2 id="modal-title" style="margin-bottom: 2rem; font-weight: 800; font-size: 1.5rem;">Añadir Categoría</h2>
+            
+            <form id="categoria-form" class="auth-form">
+                <input type="hidden" id="edit-categoria-id">
+                <div class="input-group">
+                    <label class="input-label">Nombre de Categoría</label>
+                    <div class="input-wrapper">
+                        <i class="bi bi-tag input-icon"></i>
+                        <input type="text" id="categoria-nombre" class="form-input" required placeholder="Ej. Alimentos">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Referencia (REF)</label>
+                    <div class="input-wrapper">
+                        <i class="bi bi-upc-scan input-icon"></i>
+                        <input type="text" id="categoria-ref" class="form-input" required placeholder="Ej. CAT-001">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Descripción</label>
+                    <div class="input-wrapper">
+                        <textarea id="categoria-descripcion" class="form-input" rows="3" required placeholder="Descripción de la categoría..." style="padding-left: 1rem; border-radius: var(--radius-lg);"></textarea>
+                    </div>
+                </div>
+                <!-- Optional simplified icon selection just for look and feel -->
+                <div class="input-group">
+                    <label class="input-label">Icono</label>
+                    <div class="input-wrapper">
+                        <i class="bi bi-emoji-smile input-icon"></i>
+                        <select id="categoria-icono" class="form-input" style="padding-left: 3rem; -webkit-appearance: none; appearance: none;">
+                            <option value="bi-cup-hot">Alimentos / Restaurante (Cup)</option>
+                            <option value="bi-pc-display">Tecnología (PC)</option>
+                            <option value="bi-house">Hogar (House)</option>
+                            <option value="bi-heart-pulse">Salud (Heart)</option>
+                            <option value="bi-box-seam">General (Box)</option>
+                            <option value="bi-basket">Canasta (Basket)</option>
+                            <option value="bi-airplane">Viajes (Airplane)</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn" style="margin-top: 1rem;">
+                    <span id="save-btn-text">Guardar Categoría</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="Scriptsitos/script.js"></script>
+    <script src="Scriptsitos/admin_categorias.js"></script>
+</body>
+</html>

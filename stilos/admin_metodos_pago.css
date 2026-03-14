@@ -1,0 +1,58 @@
+/* admin_metodos_pago.css */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.125rem 0.625rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.badge-credito {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+}
+
+.badge-debito {
+    background-color: #f1f5f9;
+    color: #334155;
+}
+
+.badge-efectivo {
+    background-color: #fef3c7;
+    color: #b45309;
+}
+
+body.dark .badge-credito {
+    background-color: rgba(30, 58, 138, 0.3);
+    color: #93c5fd;
+}
+
+body.dark .badge-debito {
+    background-color: rgba(30, 41, 59, 1);
+    color: #cbd5e1;
+}
+
+body.dark .badge-efectivo {
+    background-color: rgba(120, 53, 15, 0.3);
+    color: #fcd34d;
+}
+
+.method-icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--slate-100);
+}
+
+body.dark .method-icon {
+    background-color: var(--slate-800);
+}
+
+.method-icon i {
+    color: var(--primary);
+    font-size: 0.875rem;
+}

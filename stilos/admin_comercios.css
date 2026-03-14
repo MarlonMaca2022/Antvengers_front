@@ -1,0 +1,99 @@
+/* admin_comercios.css */
+.category-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.625rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.cat-supermercado { background-color: rgba(var(--primary-rgb), 0.1); color: var(--primary); }
+.cat-descuento { background-color: #dbeafe; color: #1d4ed8; }
+.cat-salud { background-color: #ffe4e6; color: #be123c; }
+.cat-hogar { background-color: #fef3c7; color: #b45309; }
+.cat-otro { background-color: var(--slate-100); color: var(--slate-600); }
+
+body.dark .cat-descuento { background-color: rgba(30, 58, 138, 0.3); color: #93c5fd; }
+body.dark .cat-salud { background-color: rgba(136, 19, 55, 0.3); color: #fda4af; }
+body.dark .cat-hogar { background-color: rgba(120, 53, 15, 0.3); color: #fcd34d; }
+body.dark .cat-otro { background-color: var(--slate-800); color: var(--slate-400); }
+
+.comercio-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-supermercado { background-color: #d1fae5; color: #047857; }
+.icon-descuento { background-color: #dbeafe; color: #1d4ed8; }
+.icon-salud { background-color: #ffe4e6; color: #be123c; }
+.icon-hogar { background-color: #fef3c7; color: #b45309; }
+.icon-otro { background-color: var(--slate-100); color: var(--slate-600); }
+
+body.dark .icon-supermercado { background-color: rgba(6, 78, 59, 0.3); color: #34d399; }
+body.dark .icon-descuento { background-color: rgba(30, 58, 138, 0.3); color: #60a5fa; }
+body.dark .icon-salud { background-color: rgba(136, 19, 55, 0.3); color: #fb7185; }
+body.dark .icon-hogar { background-color: rgba(120, 53, 15, 0.3); color: #fbbf24; }
+body.dark .icon-otro { background-color: var(--slate-800); color: var(--slate-400); }
+
+.filtros-scroll {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none; /* Firefox */
+}
+.filtros-scroll::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
+
+.filtro-btn {
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+    cursor: pointer;
+    border: none;
+    background-color: var(--slate-100);
+    color: var(--slate-600);
+    transition: var(--transition);
+}
+
+body.dark .filtro-btn {
+    background-color: var(--slate-800);
+    color: var(--slate-400);
+}
+
+.filtro-btn:hover {
+    background-color: var(--slate-200);
+}
+
+body.dark .filtro-btn:hover {
+    background-color: var(--slate-700);
+}
+
+.filtro-btn.active {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+body.dark .filtro-btn.active {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.stat-desc {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--slate-500);
+}
+
+body.dark .stat-desc {
+    color: var(--slate-400);
+}

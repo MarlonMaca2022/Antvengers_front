@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Usuarios - Antvengers Admin</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="stilos/style.css">
+</head>
+<body class="dark" style="display: block; padding: 0;">
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="bi bi-bug-fill"></i>
+                    </div>
+                    <h2 class="logo-text">Antvengers</h2>
+                </div>
+                <p style="font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--slate-500); margin-top: 0.5rem; padding-left: 3.25rem;">Admin Central</p>
+            </div>
+
+            <nav class="flex-1">
+                <div class="nav-section">
+                    <p class="nav-title">Principal</p>
+                    <a href="#" class="nav-link">
+                        <i class="bi bi-speedometer2"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="bi bi-receipt"></i>
+                        <span>Gastos</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="bi bi-graph-up-arrow"></i>
+                        <span>Reportes</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <p class="nav-title">Administración</p>
+                    <a href="admin_usuarios.html" class="nav-link active">
+                        <i class="bi bi-people"></i>
+                        <span>Usuarios</span>
+                    </a>
+                    <a href="admin_categorias.html" class="nav-link">
+                        <i class="bi bi-tags"></i>
+                        <span>Categorías</span>
+                    </a>
+                    <a href="admin_metodos_pago.html" class="nav-link">
+                        <i class="bi bi-credit-card"></i>
+                        <span>Métodos de Pago</span>
+                    </a>
+                    <a href="admin_comercios.html" class="nav-link">
+                        <i class="bi bi-shop"></i>
+                        <span>Comercios</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <p class="nav-title">Sistema</p>
+                    <a href="#" class="nav-link">
+                        <i class="bi bi-gear"></i>
+                        <span>Configuración</span>
+                    </a>
+                </div>
+            </nav>
+
+            <!-- User Profile at bottom -->
+            <div style="padding: 1.5rem; border-top: 1px solid var(--border-current);">
+                <div class="user-badge" style="background: none; padding: 0;">
+                    <img src="https://ui-avatars.com/api/?name=Admin+Antvenger&background=2aa3cf&color=fff" class="user-avatar" alt="Admin">
+                    <div style="flex: 1;">
+                        <p style="font-size: 0.8rem; font-weight: 700;">Admin Antvenger</p>
+                        <p style="font-size: 0.65rem; color: var(--slate-500);">alex@antvengers.com</p>
+                    </div>
+                    <button class="action-btn" id="logout-btn" title="Cerrar sesión">
+                        <i class="bi bi-box-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <div>
+                    <!-- Breadcrumbs or simple icon -->
+                    <i class="bi bi-people" style="color: var(--slate-400); font-size: 1.25rem;"></i>
+                </div>
+                
+                <div style="display: flex; gap: 1rem; align-items: center; flex: 1; max-width: 500px; margin-left: 1rem;">
+                    <div style="position: relative; width: 100%;">
+                        <i class="bi bi-search" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--slate-400);"></i>
+                        <input type="text" class="form-input" placeholder="Buscar usuarios..." style="width: 100%; padding: 0.5rem 1rem 0.5rem 2.5rem; font-size: 0.8rem; border-radius: var(--radius-lg); background-color: var(--bg-current);">
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 0.5rem; align-items: center; margin-left: auto;">
+                    <button class="menu-btn" id="theme-toggle" title="Cambiar tema">
+                        <i class="bi bi-moon-stars-fill" id="theme-icon"></i>
+                    </button>
+                    <button class="menu-btn" title="Notificaciones">
+                        <i class="bi bi-bell"></i>
+                    </button>
+                </div>
+            </header>
+
+            <div class="content-body" style="padding-top: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <h2 style="font-size: 1.75rem; font-weight: 800; letter-spacing: -0.025em;">Gestión de Usuarios</h2>
+                        <p style="color: var(--slate-500); font-size: 0.875rem; margin-top: 0.25rem;">Gestiona los accesos y roles de la plataforma.</p>
+                    </div>
+                    <button class="submit-btn" style="padding: 0.6rem 1.2rem; font-size: 0.875rem; width: auto;" id="add-user-btn">
+                        <i class="bi bi-person-plus" style="font-size: 1.1rem; margin-right: 0.25rem;"></i>
+                        <span>Nuevo Usuario</span>
+                    </button>
+                </div>
+
+                <!-- Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="logo-icon" style="background: rgba(var(--primary-rgb), 0.1);">
+                                <i class="bi bi-people" style="color: var(--primary);"></i>
+                            </div>
+                            <span class="status-chip status-active">+12%</span>
+                        </div>
+                        <p style="font-size: 0.8rem; color: var(--slate-500); font-weight: 600;">Total Usuarios</p>
+                        <h3 style="font-size: 1.5rem; font-weight: 800;" id="total-users-stat">0</h3>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="logo-icon" style="background: rgba(34, 197, 94, 0.1);">
+                                <i class="bi bi-person-check" style="color: #4ade80;"></i>
+                            </div>
+                            <span class="status-chip status-active">Online</span>
+                        </div>
+                        <p style="font-size: 0.8rem; color: var(--slate-500); font-weight: 600;">Activos hoy</p>
+                        <h3 style="font-size: 1.5rem; font-weight: 800;">843</h3>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="logo-icon" style="background: rgba(245, 158, 11, 0.1);">
+                                <i class="bi bi-shield-lock" style="color: #f59e0b;"></i>
+                            </div>
+                            <span class="status-chip status-inactive">Admin</span>
+                        </div>
+                        <p style="font-size: 0.8rem; color: var(--slate-500); font-weight: 600;">Administradores</p>
+                        <h3 style="font-size: 1.5rem; font-weight: 800;" id="total-admins-stat">0</h3>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="table-container">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Rol</th>
+                                <th>Estado</th>
+                                <th style="text-align: right;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-table-body">
+                            <!-- JS will populate this -->
+                        </tbody>
+                    </table>
+                    
+                    <!-- Pagination info -->
+                    <div style="padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-current); background-color: rgba(var(--slate-100), 0.3);">
+                        <p style="font-size: 0.75rem; color: var(--slate-500);" id="table-info">Mostrando 0 resultados</p>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button class="menu-btn" style="width: 2rem; height: 2rem;"><i class="bi bi-chevron-left" style="font-size: 0.8rem;"></i></button>
+                            <button class="menu-btn active" style="width: 2rem; height: 2rem; background: var(--primary); color: white;">1</button>
+                            <button class="menu-btn" style="width: 2rem; height: 2rem;"><i class="bi bi-chevron-right" style="font-size: 0.8rem;"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for CRUD -->
+    <div id="user-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 100; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
+        <div class="stat-card" style="width: 100%; max-width: 450px; padding: 2.5rem; position: relative;">
+            <button id="close-modal" style="position: absolute; right: 1.5rem; top: 1.5rem; border: none; background: none; cursor: pointer; color: var(--slate-400);">
+                <i class="bi bi-x-lg"></i>
+            </button>
+            <h2 id="modal-title" style="margin-bottom: 2rem; font-weight: 800;">Añadir Usuario</h2>
+            
+            <form id="user-form" class="auth-form">
+                <input type="hidden" id="edit-user-id">
+                <div class="input-group">
+                    <label class="input-label">Nombre Completo</label>
+                    <div class="input-wrapper">
+                        <i class="bi bi-person input-icon"></i>
+                        <input type="text" id="user-name" class="form-input" required placeholder="Ej. Alex Rivera">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Correo Electrónico</label>
+                    <div class="input-wrapper">
+                        <i class="bi bi-envelope input-icon"></i>
+                        <input type="email" id="user-email" class="form-input" required placeholder="alex@correo.com">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Rol</label>
+                    <div class="input-wrapper">
+                        <i class="bi bi-shield-check input-icon"></i>
+                        <select id="user-role" class="form-input" style="padding-left: 3rem; -webkit-appearance: none; appearance: none;">
+                            <option value="Admin">Administrador</option>
+                            <option value="Editor">Editor</option>
+                            <option value="Viewer">Visualizador</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn" style="margin-top: 1rem;">
+                    <span id="save-btn-text">Guardar Usuario</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="Scriptsitos/script.js"></script>
+</body>
+</html>

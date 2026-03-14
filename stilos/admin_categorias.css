@@ -1,0 +1,55 @@
+/* admin_categorias.css */
+.cat-icon-container {
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-lg);
+    background-color: rgba(var(--primary-rgb), 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 1.5rem;
+}
+
+.table-desc {
+    font-size: 0.875rem;
+    color: var(--slate-600);
+    max-width: 20rem;
+    white-space: normal;
+}
+
+body.dark .table-desc {
+    color: var(--slate-400);
+}
+
+.grid-stats-bottom {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.bottom-stat-card {
+    padding: 1.5rem;
+    background-color: var(--white);
+    border: 1px solid var(--border-current);
+    border-radius: var(--radius-xl);
+}
+
+body.dark .bottom-stat-card {
+    background-color: rgba(var(--slate-900), 0.5);
+}
+
+.stat-label-mini {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--slate-500);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.25rem;
+}
+
+.stat-value-large {
+    font-size: 1.875rem;
+    font-weight: 700;
+}
