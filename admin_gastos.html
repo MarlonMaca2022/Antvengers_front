@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Antvengers - Registro de Gastos</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2aa3cf",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#121c20",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <link rel="stylesheet" href="stilos/admin_gastos.css">
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <aside class="w-72 bg-slate-50 dark:bg-[#1a2529] border-r border-slate-200 dark:border-slate-800 flex flex-col">
+            <div class="p-6 flex items-center gap-3">
+                <div class="bg-primary p-2 rounded-lg text-background-dark">
+                    <span class="material-symbols-outlined font-bold">query_stats</span>
+                </div>
+                <h1 class="text-xl font-bold tracking-tight">Antvengers</h1>
+            </div>
+            <nav class="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
+                <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 px-2">Principal</div>
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 group transition-all"
+                    href="#">
+                    <span class="material-symbols-outlined text-slate-500 group-hover:text-primary">dashboard</span>
+                    <span class="text-sm font-medium">Dashboard / Panel de Control</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg sidebar-item-active group transition-all"
+                    href="admin_gastos.html">
+                    <span class="material-symbols-outlined text-primary">receipt</span>
+                    <span class="text-sm font-medium">Gastos</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 group transition-all"
+                    href="#">
+                    <span class="material-symbols-outlined text-slate-500 group-hover:text-primary">pie_chart</span>
+                    <span class="text-sm font-medium">Reportes e Ingresos</span>
+                </a>
+
+                <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mt-6 mb-2 px-2">Administración
+                </div>
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 group transition-all"
+                    href="admin_usuarios.html">
+                    <span class="material-symbols-outlined text-slate-500 group-hover:text-primary">group</span>
+                    <span class="text-sm font-medium">Usuarios</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 group transition-all"
+                    href="admin_categorias.html">
+                    <span class="material-symbols-outlined text-slate-500 group-hover:text-primary">sell</span>
+                    <span class="text-sm font-medium">Categorías</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 group transition-all"
+                    href="admin_metodos_pago.html">
+                    <span class="material-symbols-outlined text-slate-500 group-hover:text-primary">credit_card</span>
+                    <span class="text-sm font-medium">Métodos de Pago</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 group transition-all"
+                    href="admin_comercios.html">
+                    <span class="material-symbols-outlined text-slate-500 group-hover:text-primary">storefront</span>
+                    <span class="text-sm font-medium">Comercios</span>
+                </a>
+
+                <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mt-6 mb-2 px-2">Sistema</div>
+                <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 group transition-all"
+                    href="#">
+                    <span class="material-symbols-outlined text-slate-500 group-hover:text-primary">settings</span>
+                    <span class="text-sm font-medium">Configuración</span>
+                </a>
+            </nav>
+            <div class="p-4 border-t border-slate-200 dark:border-slate-800">
+                <button
+                    class="flex items-center justify-center w-full gap-2 px-4 py-2 bg-slate-200 dark:bg-slate-800 hover:bg-red-500/20 hover:text-red-500 text-sm font-bold rounded-lg transition-colors"
+                    onclick="window.location.href='index.html'">
+                    <span class="material-symbols-outlined text-sm">logout</span>
+                    Cerrar Sesión
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 flex flex-col overflow-hidden">
+            <header
+                class="h-16 border-b border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-background-dark/50 backdrop-blur-md flex items-center justify-between px-8 z-10">
+                <div class="flex items-center gap-4 flex-1 max-w-xl">
+                    <div class="relative w-full">
+                        <span
+                            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">search</span>
+                        <input
+                            class="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary text-sm outline-none"
+                            placeholder="Buscar gastos..." type="text" id="busqueda-gastos" />
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg relative">
+                        <span class="material-symbols-outlined">notifications</span>
+                        <span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
+                    </button>
+                    <div class="h-8 w-[1px] bg-slate-200 dark:bg-slate-800 mx-2"></div>
+                    <div class="flex items-center gap-3">
+                        <div class="text-right hidden sm:block">
+                            <p class="text-sm font-bold leading-none">Admin Usuario</p>
+                            <p class="text-xs text-slate-500 mt-1">Administrador</p>
+                        </div>
+                        <img alt="Profile picture"
+                            class="w-10 h-10 rounded-full border-2 border-primary/20 object-cover"
+                            src="https://ui-avatars.com/api/?name=Admin+Usuario&background=2aa3cf&color=fff" />
+                    </div>
+                </div>
+            </header>
+
+            <div class="flex-1 overflow-y-auto p-8 relative flex gap-8">
+                <div class="flex-1 max-w-2xl flex flex-col">
+                    <div class="mb-10">
+                        <h2 class="text-3xl font-bold tracking-tight mb-2">Registro de Gastos</h2>
+                        <p class="text-slate-500 dark:text-slate-400">Registra tus gastos con precisión y rapidez.</p>
+                    </div>
+
+                    <form id="gasto-form"
+                        class="space-y-8 bg-white dark:bg-slate-900 p-8 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="col-span-full">
+                                <label
+                                    class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Monto</label>
+                                <div class="relative group">
+                                    <span
+                                        class="absolute left-4 top-1/2 -translate-y-1/2 text-2xl font-bold text-primary transition-colors">$</span>
+                                    <input id="gasto-monto" required
+                                        class="w-full pl-10 pr-4 py-4 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-3xl font-bold focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none placeholder:text-slate-300 dark:placeholder:text-slate-600"
+                                        placeholder="0.00" step="0.01" type="number" />
+                                </div>
+                            </div>
+
+                            <div class="col-span-full">
+                                <label
+                                    class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Descripción</label>
+                                <input id="gasto-descripcion" required
+                                    class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
+                                    placeholder="Ej. Suscripción a servidor en la nube" type="text" />
+                            </div>
+
+                            <div>
+                                <label
+                                    class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Categoría</label>
+                                <div class="relative">
+                                    <select id="gasto-categoria" required
+                                        class="w-full appearance-none px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none">
+                                        <option value="">Seleccionar Categoría</option>
+                                    </select>
+                                    <!-- <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">expand_more</span> -->
+                                </div>
+                            </div>
+
+                            <div>
+                                <label
+                                    class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Comercio</label>
+                                <div class="relative">
+                                    <select id="gasto-comercio" required
+                                        class="w-full appearance-none px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none">
+                                        <option value="">Seleccionar Comercio</option>
+                                    </select>
+                                    <!-- <span
+                                        class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">expand_more</span> -->
+                                </div>
+                            </div>
+
+                            <div class="col-span-full">
+                                <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Método de
+                                    Pago</label>
+                                <div class="relative">
+                                    <select id="gasto-metodo" required
+                                        class="w-full appearance-none px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none">
+                                        <option value="">Seleccionar Método</option>
+                                    </select>
+                                    <!-- <span
+                                        class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">credit_card</span> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 pt-4">
+                            <button
+                                class="flex-1 bg-primary text-background-dark font-bold py-4 rounded-lg hover:opacity-90 transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2"
+                                type="submit">
+                                <span class="material-symbols-outlined">save</span> Guardar Gasto
+                            </button>
+                            <button id="cancel-gasto"
+                                class="px-8 py-4 border border-slate-200 dark:border-slate-800 rounded-lg font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all"
+                                type="button">
+                                Limpiar
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div
+                            class="p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
+                            <p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-1">Gasto Total
+                                Acumulado</p>
+                            <p id="stat-total" class="text-2xl font-bold">$0.00</p>
+                        </div>
+
+                        <div
+                            class="p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
+                            <p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-1">Comercio
+                                Principal (Más gastos)</p>
+                            <p id="stat-main-commerce" class="text-2xl font-bold truncate">N/A</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="flex-1 right-container bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden flex flex-col max-h-[calc(100vh-8rem)] sticky top-0">
+                    <div class="p-6 border-b border-slate-200 dark:border-slate-800">
+                        <h3 class="font-bold text-lg">Historial de Gastos</h3>
+                    </div>
+                    <div class="flex-1 overflow-y-auto p-6">
+                        <div id="gastos-list" class="space-y-4">
+                            <!-- Generado por JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="Scriptsitos/admin_gastos.js"></script>
+</body>
+
+</html>
