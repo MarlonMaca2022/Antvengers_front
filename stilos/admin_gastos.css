@@ -1,0 +1,26 @@
+body {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.sidebar-item-active {
+    background-color: rgba(42, 163, 207, 0.2);
+    border-left: 4px solid #2aa3cf;
+}
+
+/* Custom scrollbar para la lista de gastos */
+.right-container ::-webkit-scrollbar {
+    width: 6px;
+}
+
+.right-container ::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.right-container ::-webkit-scrollbar-thumb {
+    background-color: #334155;
+    border-radius: 10px;
+}
+
+.dark .right-container ::-webkit-scrollbar-thumb {
+    background-color: #475569;
+}
