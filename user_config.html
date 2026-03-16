@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Configuración de Perfil - Antvengers</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2aa3cf",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#121c20",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Navbar -->
+<header class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 px-6 py-4 bg-background-light dark:bg-background-dark sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<div class="text-primary size-8">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.8261 30.5736C16.7203 29.8826 20.2244 29.4783 24 29.4783C27.7756 29.4783 31.2797 29.8826 34.1739 30.5736C36.9144 31.2278 39.9967 32.7669 41.3563 33.8352L24.8486 7.36089C24.4571 6.73303 23.5429 6.73303 23.1514 7.36089L6.64374 33.8352C8.00331 32.7669 11.0856 31.2278 13.8261 30.5736Z" fill="currentColor"></path>
+<path clip-rule="evenodd" d="M39.998 35.764C39.9944 35.7463 39.9875 35.7155 39.9748 35.6706C39.9436 35.5601 39.8949 35.4259 39.8346 35.2825C39.8168 35.2403 39.7989 35.1993 39.7813 35.1602C38.5103 34.2887 35.9788 33.0607 33.7095 32.5189C30.9875 31.8691 27.6413 31.4783 24 31.4783C20.3587 31.4783 17.0125 31.8691 14.2905 32.5189C12.0012 33.0654 9.44505 34.3104 8.18538 35.1832C8.17384 35.2075 8.16216 35.233 8.15052 35.2592C8.09919 35.3751 8.05721 35.4886 8.02977 35.589C8.00356 35.6848 8.00039 35.7333 8.00004 35.7388C8.00004 35.739 8 35.7393 8.00004 35.7388C8.00004 35.7641 8.0104 36.0767 8.68485 36.6314C9.34546 37.1746 10.4222 37.7531 11.9291 38.2772C14.9242 39.319 19.1919 40 24 40C28.8081 40 33.0758 39.319 36.0709 38.2772C37.5778 37.7531 38.6545 37.1746 39.3151 36.6314C39.9006 36.1499 39.9857 35.8511 39.998 35.764ZM4.95178 32.7688L21.4543 6.30267C22.6288 4.4191 25.3712 4.41909 26.5457 6.30267L43.0534 32.777C43.0709 32.8052 43.0878 32.8338 43.104 32.8629L41.3563 33.8352C43.104 32.8629 43.1038 32.8626 43.104 32.8629L43.1051 32.865L43.1065 32.8675L43.1101 32.8739L43.1199 32.8918C43.1276 32.906 43.1377 32.9246 43.1497 32.9473C43.1738 32.9925 43.2062 33.0545 43.244 33.1299C43.319 33.2792 43.4196 33.489 43.5217 33.7317C43.6901 34.1321 44 34.9311 44 35.7391C44 37.4427 43.003 38.7775 41.8558 39.7209C40.6947 40.6757 39.1354 41.4464 37.385 42.0552C33.8654 43.2794 29.133 44 24 44C18.867 44 14.1346 43.2794 10.615 42.0552C8.86463 41.4464 7.30529 40.6757 6.14419 39.7209C4.99695 38.7775 3.99999 37.4427 3.99999 35.7391C3.99999 34.8725 4.29264 34.0922 4.49321 33.6393C4.60375 33.3898 4.71348 33.1804 4.79687 33.0311C4.83898 32.9556 4.87547 32.8935 4.9035 32.8471C4.91754 32.8238 4.92954 32.8043 4.93916 32.7889L4.94662 32.777L4.95178 32.7688ZM35.9868 29.004L24 9.77997L12.0131 29.004C12.4661 28.8609 12.9179 28.7342 13.3617 28.6282C16.4281 27.8961 20.0901 27.4783 24 27.4783C27.9099 27.4783 31.5719 27.8961 34.6383 28.6282C35.082 28.7342 35.5339 28.8609 35.9868 29.004Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-xl font-bold tracking-tight">Antvengers</h2>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">notifications</span>
+</button>
+<div class="flex items-center gap-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary" data-alt="Avatar circular del usuario Antvenger" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBDrpFEzHgGwONJxlQQdDQAal6QXiVIN2aN_Z_0gCv1PBTdlbe30-HZK9F9YUjButluvHg02We6ONqgelSi-5IeVebchrMKftGXT6E4jDCc0LrvECdpgFiqtncUhEDBi-mgdqcBPdz19hv_A7KaCyHHv5UnhxWYO8REJRrRl4NIQViGbKSao86nkFu753RyB754eLRdBnmVZOUzUHYIjOIYO4LMkRDTpMFNnuUsTtN-6ETGc6l76RVEjyHjBaocKcjWXhso2pxxdjQ");'></div>
+<span class="hidden md:block font-medium">Capitán Colombia</span>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 border-r border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark hidden lg:flex flex-col p-4 gap-6">
+<div class="flex flex-col gap-1">
+<div class="p-2">
+<p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Menú de Usuario</p>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary text-white font-medium" href="#">
+<span class="material-symbols-outlined">person</span>
+                                Mi Perfil
+                            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">notifications</span>
+                                Notificaciones
+                            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">security</span>
+                                Seguridad y Privacidad
+                            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+                                Facturación
+                            </a>
+</nav>
+</div>
+<div class="flex flex-col gap-1 mt-auto">
+<nav class="space-y-1 border-t border-slate-200 dark:border-slate-800 pt-4">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+                                Preferencias
+                            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+                                Cerrar Sesión
+                            </a>
+</nav>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto bg-slate-50 dark:bg-slate-900/30">
+<div class="max-w-4xl mx-auto px-6 py-10">
+<div class="mb-8">
+<h1 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">Configuración de Perfil</h1>
+<p class="text-slate-500 dark:text-slate-400">Actualiza tu información personal y gestiona la seguridad de tu cuenta.</p>
+</div>
+<!-- Profile Photo Card -->
+<section class="bg-white dark:bg-background-dark rounded-xl border border-slate-200 dark:border-slate-800 p-6 mb-8 shadow-sm">
+<h2 class="text-lg font-semibold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">image</span>
+                                Foto de Perfil
+                            </h2>
+<div class="flex flex-col sm:flex-row items-center gap-8">
+<div class="relative group">
+<div class="size-32 rounded-full overflow-hidden border-4 border-primary/20 bg-slate-200 dark:bg-slate-700">
+<div class="w-full h-full bg-center bg-cover" data-alt="Foto de perfil actual del usuario" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBdYQF7DStfn3wo64557qncv6ADhl5iUiDtkSJEWgSLBCGyG-s6ruqem3ZfZW0tT_cTvMkGG-ygjZMoVJa97NKn0XQydUK2FfZm5ou2s9_LXAdIH0qzGJvAHWVDZZHOihK5uGvxiZ4bJZVcHkGjbvdHMB8rwjU1ds5tbIUDdACOVcKd3rEjeA9Q7j7pr5Yqpuv_cngSbkMd5AZVPp7yY67jpQKXojbJ56gVnDINpOLwvve6oTPOnTMS5C4An5Alp91czBWyElVLemc");'></div>
+</div>
+<button class="absolute bottom-0 right-0 bg-primary text-white p-2 rounded-full shadow-lg hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+</div>
+<div class="flex-1 text-center sm:text-left">
+<p class="text-sm font-medium text-slate-700 dark:text-slate-200 mb-2">Sube una nueva imagen</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 mb-4 leading-relaxed">Formatos permitidos: JPG, PNG o GIF. Tamaño máximo de archivo: 2MB. Se recomienda una imagen cuadrada de al menos 400x400px.</p>
+<div class="flex flex-wrap justify-center sm:justify-start gap-3">
+<button class="px-4 py-2 bg-primary text-white rounded-lg font-bold text-sm hover:opacity-90 transition-opacity">
+                                            Subir nueva foto
+                                        </button>
+<button class="px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-lg font-bold text-sm hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                                            Eliminar
+                                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Personal Info Card -->
+<section class="bg-white dark:bg-background-dark rounded-xl border border-slate-200 dark:border-slate-800 p-6 mb-8 shadow-sm">
+<h2 class="text-lg font-semibold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">badge</span>
+                                Información Personal
+                            </h2>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">Nombre Completo</label>
+<input class="w-full rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 px-4 py-3 text-slate-900 dark:text-slate-100 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="Ingresa tu nombre" type="text" value="Capitán Colombia"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">Correo Electrónico</label>
+<input class="w-full rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 px-4 py-3 text-slate-900 dark:text-slate-100 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="tu@correo.com" type="email" value="colombia@antvengers.com"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">Número de Teléfono</label>
+<div class="flex gap-2">
+<span class="flex items-center px-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-800 text-slate-500 text-sm font-medium">+57</span>
+<input class="w-full rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 px-4 py-3 text-slate-900 dark:text-slate-100 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" type="tel" value="300 123 4567"/>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">Ubicación (Ciudad)</label>
+<input class="w-full rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 px-4 py-3 text-slate-900 dark:text-slate-100 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" type="text" value="Bogotá, D.C."/>
+</div>
+</div>
+<div class="flex justify-end pt-4 border-t border-slate-100 dark:border-slate-800">
+<button class="px-6 py-2.5 bg-primary text-white rounded-lg font-bold hover:opacity-90 transition-all shadow-md" type="submit">
+                                        Guardar Cambios
+                                    </button>
+</div>
+</form>
+</section>
+<!-- Password Change Card -->
+<section class="bg-white dark:bg-background-dark rounded-xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+<h2 class="text-lg font-semibold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">lock</span>
+                                Cambiar Contraseña
+                            </h2>
+<form class="space-y-6">
+<div class="grid grid-cols-1 gap-6 max-w-lg">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">Contraseña Actual</label>
+<div class="relative">
+<input class="w-full rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 px-4 py-3 pr-12 text-slate-900 dark:text-slate-100 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="••••••••" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">Nueva Contraseña</label>
+<div class="relative">
+<input class="w-full rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 px-4 py-3 pr-12 text-slate-900 dark:text-slate-100 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="Mínimo 8 caracteres" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">Confirmar Nueva Contraseña</label>
+<div class="relative">
+<input class="w-full rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 px-4 py-3 pr-12 text-slate-900 dark:text-slate-100 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="Repite la contraseña" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+</div>
+<div class="p-4 bg-primary/5 dark:bg-primary/10 rounded-lg border border-primary/20">
+<p class="text-xs text-primary leading-relaxed flex gap-2">
+<span class="material-symbols-outlined text-sm">info</span>
+                                        La nueva contraseña debe contener al menos una letra mayúscula, un número y un carácter especial.
+                                    </p>
+</div>
+<div class="flex justify-end pt-4 border-t border-slate-100 dark:border-slate-800">
+<button class="px-6 py-2.5 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 rounded-lg font-bold hover:bg-slate-800 dark:hover:bg-slate-200 transition-all shadow-md" type="submit">
+                                        Actualizar Contraseña
+                                    </button>
+</div>
+</form>
+</section>
+<!-- Danger Zone -->
+<div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800">
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 bg-rose-50 dark:bg-rose-950/20 border border-rose-200 dark:border-rose-900/50 rounded-xl">
+<div>
+<h3 class="text-rose-600 dark:text-rose-400 font-bold">Zona de Peligro</h3>
+<p class="text-sm text-rose-500/80">Una vez que elimines tu cuenta, no hay vuelta atrás. Por favor, asegúrate.</p>
+</div>
+<button class="px-6 py-2 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-lg transition-colors text-sm whitespace-nowrap">
+                                    Eliminar mi cuenta
+                                </button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</div>
+</body></html>
