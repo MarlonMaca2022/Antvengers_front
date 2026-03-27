@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Antvengers Admin</title>
+    <!-- Google Fonts: Space Grotesk -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&display=swap"
+        rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="stilos/style.css">
+    <style>
+        :root {
+            --surface-secondary: #1a2529;
+            --surface-accent: rgba(42, 163, 207, 0.1);
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+
+        .metric-card {
+            background-color: var(--surface-secondary);
+            border: 1px solid var(--border-current);
+            transition: var(--transition);
+        }
+
+        .metric-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .accent-bar {
+            width: 4px;
+            height: 100%;
+            background-color: var(--primary);
+            position: absolute;
+            left: 0;
+            top: 0;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .nav-link.active {
+            position: relative;
+            background-color: var(--surface-accent);
+        }
+
+        .nav-link.active::before {
+            content: '';
+            position: absolute;
+            left: -1rem;
+            top: 0.5rem;
+            bottom: 0.5rem;
+            width: 4px;
+            background-color: var(--primary);
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Glassmorphism for header */
+        .content-header {
+            backdrop-filter: blur(10px);
+            background-color: rgba(var(--bg-dark-rgb, 18, 28, 32), 0.8);
+        }
+    </style>
+</head>
+
+<body class="dark" style="display: block; padding: 0;">
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="bi bi-bug-fill"></i>
+                    </div>
+                    <h2 class="logo-text">Antvengers</h2>
+                </div>
+                <p style="font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--slate-500); margin-top: 0.5rem; padding-left: 3.25rem;">Admin Central</p>
+            </div>
+
+            <nav class="flex-1">
+                <div class="nav-section">
+                    <p class="nav-title">Principal</p>
+                    <a href="dashboard.html" class="nav-link active">
+                        <i class="bi bi-speedometer2"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="admin_gastos.html" class="nav-link">
+                        <i class="bi bi-receipt"></i>
+                        <span>Gastos</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="bi bi-graph-up-arrow"></i>
+                        <span>Reportes</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <p class="nav-title">Administración</p>
+                    <a href="admin_usuarios.html" class="nav-link">
+                        <i class="bi bi-people"></i>
+                        <span>Usuarios</span>
+                    </a>
+                    <a href="admin_categorias.html" class="nav-link">
+                        <i class="bi bi-tags"></i>
+                        <span>Categorías</span>
+                    </a>
+                    <a href="admin_metodos_pago.html" class="nav-link">
+                        <i class="bi bi-credit-card"></i>
+                        <span>Métodos de Pago</span>
+                    </a>
+                    <a href="admin_comercios.html" class="nav-link">
+                        <i class="bi bi-shop"></i>
+                        <span>Comercios</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <p class="nav-title">Sistema</p>
+                    <a href="configuracion.html" class="nav-link">
+                        <i class="bi bi-gear"></i>
+                        <span>Configuración</span>
+                    </a>
+                </div>
+            </nav>
+
+            <!-- User Profile at bottom -->
+            <div style="padding: 1.5rem; border-top: 1px solid var(--border-current);">
+                <div class="user-badge" style="background: none; padding: 0;">
+                    <img src="https://ui-avatars.com/api/?name=Admin+Antvenger&background=2aa3cf&color=fff" class="user-avatar" alt="Admin">
+                    <div style="flex: 1;">
+                        <p style="font-size: 0.8rem; font-weight: 700; color: var(--slate-100);" id="user-name-sidebar">Admin Antvenger</p>
+                        <p style="font-size: 0.65rem; color: var(--slate-500);">alex@antvengers.com</p>
+                    </div>
+                    <button class="action-btn" id="logout-btn" title="Cerrar sesión">
+                        <i class="bi bi-box-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <div>
+                    <i class="bi bi-speedometer2" style="color: var(--slate-400); font-size: 1.25rem;"></i>
+                </div>
+                
+                <div style="display: flex; gap: 1rem; align-items: center; flex: 1; max-width: 500px; margin-left: 1rem;">
+                    <div style="position: relative; width: 100%;">
+                        <i class="bi bi-search" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--slate-400);"></i>
+                        <input type="text" class="form-input" placeholder="Buscar métricas, transacciones..." style="width: 100%; padding: 0.5rem 1rem 0.5rem 2.5rem; font-size: 0.8rem; border-radius: var(--radius-lg); background-color: var(--bg-current);">
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 0.5rem; align-items: center; margin-left: auto;">
+                    <button class="menu-btn" id="theme-toggle" title="Cambiar tema">
+                        <i class="bi bi-moon-stars-fill" id="theme-icon"></i>
+                    </button>
+                    <button class="menu-btn" title="Notificaciones">
+                        <i class="bi bi-bell"></i>
+                    </button>
+                </div>
+            </header>
+
+            <div class="content-body">
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <h2 style="font-size: 1.875rem; font-weight: 800; letter-spacing: -0.025em;">Panel de Control Unificado</h2>
+                        <p style="color: var(--slate-500); font-size: 0.875rem; margin-top: 0.25rem;">Bienvenido de nuevo, <span id="welcome-name">Admin</span>. Aquí tienes el resumen de hoy.</p>
+                    </div>
+                    <div style="display: flex; gap: 0.75rem;">
+                        <button class="secondary-btn" style="margin: 0; padding: 0.6rem 1.2rem; font-size: 0.875rem; width: auto; border-radius: var(--radius-lg);">
+                            <i class="bi bi-calendar3" style="margin-right: 0.5rem;"></i>
+                            <span>Últimos 30 días</span>
+                        </button>
+                        <button class="submit-btn" style="padding: 0.6rem 1.2rem; font-size: 0.875rem; width: auto;">
+                            <i class="bi bi-download" style="margin-right: 0.5rem;"></i>
+                            <span>Exportar</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card metric-card">
+                        <div class="stat-header">
+                            <div class="logo-icon" style="background: rgba(var(--primary-rgb), 0.1);">
+                                <i class="bi bi-wallet2" style="color: var(--primary);"></i>
+                            </div>
+                            <span class="status-chip status-active">+12.5%</span>
+                        </div>
+                        <p style="font-size: 0.8rem; color: var(--slate-500); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Gasto Total Mensual</p>
+                        <h3 style="font-size: 1.75rem; font-weight: 800; margin: 0.5rem 0;" id="total-month">$ 4.250.000</h3>
+                        <div style="height: 4px; background: var(--slate-800); border-radius: 2px; overflow: hidden;">
+                            <div style="width: 65%; height: 100%; background: var(--primary);"></div>
+                        </div>
+                    </div>
+                    <div class="stat-card metric-card">
+                        <div class="stat-header">
+                            <div class="logo-icon" style="background: rgba(34, 197, 94, 0.1);">
+                                <i class="bi bi-graph-up" style="color: #4ade80;"></i>
+                            </div>
+                            <span class="status-chip" style="background: rgba(var(--primary-rgb), 0.1); color: var(--primary);">Diario</span>
+                        </div>
+                        <p style="font-size: 0.8rem; color: var(--slate-500); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Promedio Diario</p>
+                        <h3 style="font-size: 1.75rem; font-weight: 800; margin: 0.5rem 0;">$ 141.666</h3>
+                        <p style="font-size: 0.75rem; color: var(--slate-500);">Basado en gastos registrados</p>
+                    </div>
+                    <div class="stat-card metric-card">
+                        <div class="stat-header">
+                            <div class="logo-icon" style="background: rgba(245, 158, 11, 0.1);">
+                                <i class="bi bi-piggy-bank" style="color: #f59e0b;"></i>
+                            </div>
+                            <span class="status-chip" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;">Meta</span>
+                        </div>
+                        <p style="font-size: 0.8rem; color: var(--slate-500); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Ahorro Proyectado</p>
+                        <h3 style="font-size: 1.75rem; font-weight: 800; margin: 0.5rem 0;">$ 520.000</h3>
+                        <p style="font-size: 0.75rem; color: #4ade80; font-weight: 600;">85% de la meta mensual</p>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-bottom: 2.5rem;">
+                    <div class="stat-card">
+                        <h3 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 1.5rem;">Actividad de Gastos Mensuales</h3>
+                        <div class="chart-container">
+                            <canvas id="lineChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <h3 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 1.5rem;">Distribución por Categoría</h3>
+                        <div class="chart-container">
+                            <canvas id="donutChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Transactions -->
+                <div class="table-container">
+                    <div style="padding: 1.5rem; border-bottom: 1px solid var(--border-current); display: flex; justify-content: space-between; align-items: center;">
+                        <h3 style="font-size: 1.125rem; font-weight: 700;">Últimas Transacciones</h3>
+                        <a href="admin_gastos.html" style="font-size: 0.875rem; color: var(--primary); text-decoration: none; font-weight: 600;">Ver todo</a>
+                    </div>
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Comercio</th>
+                                <th>Categoría</th>
+                                <th>Fecha</th>
+                                <th>Monto</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dashboard-tx-body">
+                            <!-- JS will populate -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- JS -->
+    <script src="Scriptsitos/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check session
+            const session = JSON.parse(localStorage.getItem('ant_session'));
+            if (!session) {
+                window.location.href = 'index.html';
+                return;
+            }
+            document.getElementById('user-name-sidebar').textContent = session.name;
+            document.getElementById('welcome-name').textContent = session.name.split(' ')[0];
+
+            // Render Recent Transactions
+            const renderTx = () => {
+                const gastos = JSON.parse(localStorage.getItem('ant_gastos')) || [];
+                const tbody = document.getElementById('dashboard-tx-body');
+                tbody.innerHTML = '';
+                
+                const recent = gastos.sort((a, b) => b.id - a.id).slice(0, 5);
+                
+                if (recent.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: var(--slate-500); padding: 2rem;">No hay transacciones registradas.</td></tr>';
+                    return;
+                }
+
+                const formatter = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 });
+
+                recent.forEach(tx => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                <div style="width: 2rem; height: 2rem; border-radius: 8px; background: rgba(var(--primary-rgb), 0.1); display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                                    <i class="bi bi-shop"></i>
+                                </div>
+                                <span style="font-weight: 600;">${tx.comercio}</span>
+                            </div>
+                        </td>
+                        <td><span class="status-chip status-inactive">${tx.categoria}</span></td>
+                        <td style="color: var(--slate-500);">${new Date(tx.id).toLocaleDateString()}</td>
+                        <td style="font-weight: 700; color: var(--primary);">${formatter.format(tx.monto)}</td>
+                        <td><span class="status-chip status-active">Completado</span></td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+
+                // Update total
+                const total = gastos.reduce((acc, g) => acc + parseFloat(g.monto), 0);
+                document.getElementById('total-month').textContent = formatter.format(total);
+            };
+
+            renderTx();
+
+            // Charts
+            const ctxLine = document.getElementById('lineChart').getContext('2d');
+            new Chart(ctxLine, {
+                type: 'line',
+                data: {
+                    labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
+                    datasets: [{
+                        label: 'Gastos Semanales',
+                        data: [1200000, 1900000, 1500000, 2100000],
+                        borderColor: '#2aa3cf',
+                        backgroundColor: 'rgba(42, 163, 207, 0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        borderWidth: 3,
+                        pointBackgroundColor: '#2aa3cf'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { 
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                            ticks: { color: '#64748b' }
+                        },
+                        x: { 
+                            grid: { display: false },
+                            ticks: { color: '#64748b' }
+                        }
+                    }
+                }
+            });
+
+            const ctxDonut = document.getElementById('donutChart').getContext('2d');
+            new Chart(ctxDonut, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Alimentación', 'Transporte', 'Entretenimiento', 'Hogar'],
+                    datasets: [{
+                        data: [42, 26, 18, 14],
+                        backgroundColor: ['#2aa3cf', '#4ade80', '#f59e0b', '#f43f5e'],
+                        borderWidth: 0,
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#94a3b8',
+                                padding: 20,
+                                font: { size: 11, family: 'Space Grotesk' }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
